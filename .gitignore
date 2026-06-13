@@ -1,0 +1,16 @@
+# Exécutables compilés (pas d'extension sur Mac/Linux)
+# On ignore les dossiers build/
+build/
+
+# Fichiers debug Mac
+*.dSYM/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Fichiers objets de compilation
+*.o
+*.out
