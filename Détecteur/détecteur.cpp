@@ -1,37 +1,59 @@
 #include <iostream>
 #include <limits>
 
-    int main(){
 
-        int a, b;
-
-        std::cout << "Hi ! Please give me 2 integers and i'll add them for you  :" << std::endl;
-        
-        std::cin >> a;
-            if (!std::cin) {
+      int Validate_Int(){
+        int a;
+        std:: cin >> a; 
+         while (!std::cin) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                }
+            std::cout << "It seems what you entered isn't a valid integer ... please try again" << std::endl;
+            std::cin >> a;
+         }
+        return a;
+      }
 
-        std::cin >> b;
-                if(!std::cin){
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                }
+      bool Too_Big (int a, int b){
+        if (b > 0 && a > std::numeric_limits<int>::max() - b) return true; 
+        if (b < 0 && a < std::numeric_limits<int>::min() - b) return true;  
+    
+            return false;
        
-            if(a > std::numeric_limits<int>::max() - b) {
+     }
 
-                std::cout << "oh wow ! ur numbers are a bit too big ... maybe try something else ?" << std::endl;
-                    while (a > std::numeric_limits<int>::max() - b){
-                        
-                        std::cout << "okay lets try again now ! enter 2 integers :)!";
-                        std::cin >> a;
-                        std::cin >> b;
+
+     void Calcul_Total (int a,int b){
+        int Total = a+b; 
+        std::cout << "ur total is : " << Total << " !" << std::endl;
+     }
+
+     int main(){
+    
+
+        std::cout << "Hi ! Please give me 2 integers and i'll add them for you  :" << std::endl;
+        int a = Validate_Int();
+        int b = Validate_Int();
+
+            if (Too_Big (a,b)){   
+                    for (int i = 0; i < 3; i++ ) {
+                std::cout << "The numbers u entered are too big (or not numbers at all ...) :( Please enter 2 new integers :)!\nYou have " << (3 - i) << " tries left ! " << std::endl;
+                a = Validate_Int();
+                b = Validate_Int();
+
+                if (!Too_Big (a,b)) {
+                    Calcul_Total(a,b);
+                    break;
+                }
+
                     }
             } else {
-                int Total = a+b;
-                std::cout << "ur total is : " << Total << " !" << std::endl;
+               Calcul_Total(a,b);
+                }
+            
+
+    return 0; 
             }
 
-        return 0; 
-    }
+   
+    
