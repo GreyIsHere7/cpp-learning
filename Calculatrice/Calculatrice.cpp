@@ -8,7 +8,7 @@ double expression();
 double morcel();
 double factor(); 
 
-int i =0;
+int i = 0;
 
     double calculer(){
         double Total;
@@ -16,30 +16,46 @@ int i =0;
     }
 
     double expression(){
-        return 0;
+        double a = morcel();
+
+            while (userInput[i] == '+' || userInput[i] == '-'){
+                char op = userInput [i];
+                i++;
+                double b = morcel();
+
+                if (op == '+'){
+                    a = a+b;
+                }
+                 if (op == '-'){
+                    a = a-b;
+                }
+        
+            }
+
+        return a;
     }
 
 //Function to calculate the result of a string of digits and operators, ignores spaces too.  
     double morcel() {
-        double a = factor(); 
-        double c;
+        double a = factor();
+      
             while (userInput[i]== '/' || userInput[i]== '*' || userInput[i]== '%'){
-                char op = userInput[i]; 
+                char op = userInput[i]; // Op pour operateur.
                 i++;
                 double b = factor();
 
                 if (op == '*'){
-                    c = a*b;
+                    a = a*b;
                 }
                 if (op == '/'){
-                   c = a/b;
+                   a = a/b;
                 }
 
                 if (op == '%') {
-                    c = fmod(a,b);
+                    a = fmod(a,b); // % for double 
                 }
             }
-    return c;
+    return a;
             }
 
 //Function to convert a string of digits into a double value, ignores spaces too. 
