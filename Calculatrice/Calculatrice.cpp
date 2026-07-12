@@ -3,13 +3,16 @@
 #include <string>  // Je me suis embarquée dans un de ces truc moi aussi ... 
 #include <cmath>
 
-std::string userInput; // will be in ASCII so i need to convert it to int or d
+int i = 0;
+std::string userInput; // will be in ASCII so i need to convert it to int or double
+double variables[26];
+
 double expression(); 
 double morcel();
 double factor(); 
 double puissance();
 
-int i = 0;
+
 
     double expression(){
         double a = morcel();
@@ -47,7 +50,7 @@ int i = 0;
                 }
             }  
     return a;}
-
+ 
 double puissance(){
     double a = factor(); 
 
@@ -57,7 +60,7 @@ double puissance(){
         a = pow(a,b); }
         return a;
     }
-
+// Function to calculate the result of a string of digits and operators. 
     double factor () {
         while (userInput[i]== ' '){
             i++;
@@ -66,31 +69,39 @@ double puissance(){
             i++; 
            double a = expression();
             
-                if (userInput[i] == ')'){
-                i++; }
-                else {
-                std:: cout << "mhh ... seems you forgot a ')' somwhere ? Wanna try again ? :D" << std:: endl; // ajouter la possibilité de refaire tout depuis ici. 
-                std::getline (std:: cin, userInput); 
-                i = 0;
-                double a = expression();
-                return a;
-                }
-            return a; 
-            }
+        if (userInput[i] == ')'){
+            i++; }
+        else {
+            std:: cout << "mhh ... seems you forgot a ')' somwhere ? Wanna try again ? :D" << std:: endl; // ajouter la possibilité de refaire tout depuis ici. 
+            std::getline (std:: cin, userInput); 
+            i = 0;
+            double a = expression();
+        return a;
+        }
+        return a; 
+        }
+        if (userInput[i] >='a' && userInput[i] <= 'z'){
+        double a =variables [userInput[i] - 'a'];
+        i++; 
+        return a;
+        }
+
         double a = 0;
         while (userInput[i] >= '0' && userInput[i] <= '9') {
                 a = a*10 + (userInput[i]-'0');
                 i++;
         }
+
         if (userInput[i] == '!'){
             for (int j = (a-1); j >= 1; j--) {
                 a = a*j;
-            }
-        i++;    
-        return a; 
         }
-       return a;
+         i++;    
+        return a; 
+    
     }
+    return a;
+}
 
 
 int main(){
