@@ -58,12 +58,10 @@ double puissance(){
         return a;
     }
 
-//Function to convert a string of digits into a double value, ignores spaces too. 
     double factor () {
         while (userInput[i]== ' '){
             i++;
         }
-
         if (userInput[i]== '(') {
             i++; 
            double a = expression();
@@ -71,11 +69,14 @@ double puissance(){
                 if (userInput[i] == ')'){
                 i++; }
                 else {
-                std:: cout << "mhh ... seems you forgot a ')' somwhere ? Wanna try again ? :D" << std:: endl; 
+                std:: cout << "mhh ... seems you forgot a ')' somwhere ? Wanna try again ? :D" << std:: endl; // ajouter la possibilité de refaire tout depuis ici. 
+                std::getline (std:: cin, userInput); 
+                i = 0;
+                double a = expression();
+                return a;
                 }
             return a; 
             }
-
         double a = 0;
         while (userInput[i] >= '0' && userInput[i] <= '9') {
                 a = a*10 + (userInput[i]-'0');
